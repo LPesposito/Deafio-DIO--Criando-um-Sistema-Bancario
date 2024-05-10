@@ -1,6 +1,3 @@
-
-
-
 saldo = 1000
 extrato = []
 
