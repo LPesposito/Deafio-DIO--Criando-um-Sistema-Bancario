@@ -18,7 +18,7 @@ def depositar() -> None:
     
 
 #função de saque
-def sacar() -> None:
+def sacar() -> bool:
     global saldo
     try:
         valor = float(input("Insira o valor a ser sacado: R$"))
@@ -27,6 +27,7 @@ def sacar() -> None:
             print(f"Saque bem sucedido no valor de R${valor:.2f}")
             print(f"Saldo atual R${saldo}")
             extrato.append(f'Saque no valor de R${valor:.2f}')
+            return True
         else:
             print(
                 f"Não foi possível realizar o saque. Saldo solicidato indisponível! \nValor solicitado: R${valor:.2f} \nSaldo na Conta: R${saldo:.2f}"
@@ -64,8 +65,8 @@ while True:
     
     if opicao == 's':
         if limite_saque > 0:
-            limite_saque -= 1 
-            sacar()
+            if sacar():
+                limite_saque -=1
             print(f"Saques disponíveis: {limite_saque}")
         else:
             print("Limite de saque diário excedido!")
