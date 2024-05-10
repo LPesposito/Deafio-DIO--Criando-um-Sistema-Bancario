@@ -3,8 +3,10 @@
 conta = {
     'Saldo':1000,
 }
+
 extrato = []
 
+#função de deposito
 def depositar() -> None:
     try:
         valor = float(input("Insira o valor a ser depositado: R$"))
@@ -52,17 +54,29 @@ menu = f"""
 [MENU]
 [e] Vizualizar Extrato
 [d] Depositar
-[s] Sacar
+[s] Sacar 
 [q] Sair
 """
+
+limite_saque = 3
+
 while True:
     opicao = input(menu+'Selecione uma opição: ')
     
     if opicao == 's':
-        sacar()
+        if limite_saque > 0:
+            limite_saque -= 1 
+            sacar()
+            print(f"Saques disponíveis: {limite_saque}")
+        else:
+            print("Limite de saque diário excedido!")
+        
+        
     elif opicao == 'd':
         depositar()
+        
     elif opicao == 'e':
         vizualiar_extrato()
+        
     elif opicao == 'q':
         break
